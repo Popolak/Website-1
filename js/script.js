@@ -121,7 +121,7 @@ $( document ).ready(function() {
 
     function moveBananas () {
         var newPos = makeNewPosition();
-        $('.bananas').animate({ top: newPos[0], left: newPos[1] }, 500, function(){
+        $('.bananas').animate({ top: newPos[0], left: newPos[1] }, 200, function(){
         });
     }
 
