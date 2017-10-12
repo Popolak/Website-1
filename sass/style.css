@@ -44,10 +44,11 @@ img {
   left: 50%;
   z-index: 3; }
 .container .monkey3 {
-  right: -400px;
-  bottom: 200px;
+  right: -30%;
+  bottom: 35%;
   transform: rotate(-90deg);
-  z-index: 3; }
+  z-index: 3;
+  width: 45% }
 
 .bananas {
   opacity: 1;
