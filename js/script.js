@@ -6,14 +6,24 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
-    var startgame = $('.start-game');
-    var seconds = 5;
-    var compteurBanane = 0;
-    // Loop function
-    // setInterval(leftMonkey, 8000);
 
-    // Init function
-    // bottomMonkey();
+    var startgame = $('.start-game');
+    var seconds = 30;
+    var compteurBanane = 0;
+
+    var vid = $('#dk');
+    vid.get(0).volume = 0.3;
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.bananas').length){
+            $('#scream').get(0).currentTime = 2;
+            $('#scream').get(0).play();
+        } else {
+              $('#nice').get(0).play();
+        }
+        
+    });
+
+
     initBananas();
     var bananasTarget = $('.bananas');
     countBananasRemaining();
@@ -147,7 +157,7 @@ $( document ).ready(function() {
                 leftMonkeyTarget.hide();
                 rightMonkeyTarget.hide();
                 endScore();
-                //alert("Game over");
+                
                 
             }
         }
