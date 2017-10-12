@@ -20,14 +20,14 @@ $( document ).ready(function() {
     // Events
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
-            "right": "-50px"
+            "right": "-6%"
         }, 1000, function () {
             // Nothing
         });
     });
     rightMonkeyTarget.mouseleave(function () {
         $(this).stop(true,false).animate({
-            "right": "-400px"
+            "right": "-45%"
         }, 1000, function () {
             // Nothing
         });
@@ -50,7 +50,7 @@ $( document ).ready(function() {
             leftMonkeyTarget.animate({
                 "left": "-330px"
             }, 1000, function () {
-                // Nothing
+                // Nothing3
             });
         });
     }
@@ -64,11 +64,11 @@ $( document ).ready(function() {
         var j = 15;
         for(var i = 1; i<=j;i++){
             var divSize = 50;
-            var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
-            var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
+            var posX = (Math.random() * 100);
+            var posY = (Math.random() * 100);
             $newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
-                'left': posX + 'px',
-                'top': posY + 'px'
+                'left': posX + '%',
+                'top': posY + '%'
             });
             $newImg.appendTo($('body'));
         }
@@ -94,4 +94,5 @@ $( document ).ready(function() {
 
         return [nh,nw];
     }
+
 });
