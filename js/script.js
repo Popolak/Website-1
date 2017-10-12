@@ -6,6 +6,8 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
+    var bananasTab = [];
+    var bananasTarget;
 
     var startgame = $('.start-game');
     var seconds = 30;
@@ -25,7 +27,6 @@ $( document ).ready(function() {
 
 
     initBananas();
-    var bananasTarget = $('.bananas');
     countBananasRemaining();
     score();
     $('.bananas').hide();
@@ -59,15 +60,12 @@ $( document ).ready(function() {
             // Nothing
         });
     });
-<<<<<<< HEAD
 
-    bananasTarget.click(function () {
-=======
     bananasTarget.click(function (e) {
-        console.log(e);
->>>>>>> opa
         $(this).remove();
         countBananasRemaining();
+        bananasTab.splice(0, 1);
+        bananas();
         score();
         compteurBanane = compteurBanane + 1;
         if (victory()) {
@@ -98,12 +96,14 @@ $( document ).ready(function() {
     }
 
     function bottomMonkey(e) {
+
         var newPos = makeNewPosition();
         bottomMonkeyTarget.animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
             bottomMonkey();
         });
 
     }
+
     function initBananas() {
         var j = 15;
         for(var i = 1; i<=j;i++){
@@ -114,10 +114,17 @@ $( document ).ready(function() {
                 'left': posX + '%',
                 'top': posY + '%'
             });
-            $newImg.appendTo($('body'));
+            bananasTab.push(newImg);
+            //$newImg.appendTo($('body'));
         }
-
+        bananas();
     }
+
+    function bananas() {
+        bananasTab[0].appendTo($('body')); // Appel de la première banane  
+        bananasTarget = $('.bananas');     
+    }
+
     function score () {
         $('.count_remaining').html(countBananasRemaining())
     }
@@ -137,7 +144,7 @@ $( document ).ready(function() {
         $('.score-final').html(countScoreFinal(compteurBanane));
     }
     function countBananasRemaining () {
-        return $('.bananas').length;
+        return bananasTab.length;
     }
     function makeNewPosition(){
 
