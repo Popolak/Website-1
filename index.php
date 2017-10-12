@@ -1,3 +1,15 @@
+<?php
+	include_once('libraries/PDOFactory.php');
+	include_once('model/entities/theme.php');
+	include_once('model/repositories/themeRepo.php');
+	
+	$pdo = PDOFactory::getMysqlConnection();
+	
+	$theme = new themeRepository();
+	$listImgTheme = $theme -> getAll($pdo,1);
+	
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,9 +37,10 @@
                 </span>
             </div>
 
-            <img class="monkey1" src="assets/img/monkey1.png" width="300px" height="300px" alt="Monkey1">
-            <img class="monkey2" src="assets/img/monkey2.png" alt="Monkey2">
-            <img class="monkey3" src="assets/img/monkey3.png" alt="Monkey3">
+            <img id="monkey1" class="monkey1" src="<?php echo $listImgTheme[0]->getAnimeau1() ?>" width="300px" height="300px" alt="Monkey1">
+            <img id="monkey2" class="monkey2" src="<?php echo $listImgTheme[0]->getAnimeau2() ?>" alt="Monkey2">
+            <img id="monkey3" class="monkey3" src="<?php echo $listImgTheme[0]->getAnimeau3() ?>" alt="Monkey3">
+			<input id="objet" type="hidden" name="objet" value="<?php echo $listImgTheme[0]->getObjet()?>" />
         </div>
 
     <script src="libraries/jquery-3.2.1.min.js"></script>

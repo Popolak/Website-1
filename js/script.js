@@ -85,7 +85,7 @@ $( document ).ready(function() {
         var divSize = 50;
         var posX = (Math.random() * 100);
         var posY = (Math.random() * 100);
-        $newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
+        $newImg = $('<img class="bananas" src="' + $("#objet").val() + '" alt="Banane">').css({
             'left': posX + '%',
             'top': posY + '%'
         });
