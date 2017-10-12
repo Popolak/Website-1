@@ -54,7 +54,7 @@ $( document ).ready(function() {
     });
     rightMonkeyTarget.mouseleave(function () {
         $(this).stop(true,false).animate({
-            "right": "-30%"
+            "right": "-45%"
         }, 1000, function () {
             // Nothing
         });
@@ -80,7 +80,7 @@ $( document ).ready(function() {
             leftMonkeyTarget.animate({
                 "left": "-330px"
             }, 1000, function () {
-                // Nothing
+                // Nothing3
             });
         });
 
