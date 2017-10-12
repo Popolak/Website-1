@@ -5,7 +5,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  position: relative;
   background-image: url("../assets/img/Jungle.jpg");
   background-position: center;
   background-size: cover;
@@ -49,10 +48,74 @@ img {
   bottom: 25%;
   transform: rotate(-90deg);
   z-index: 3;
-  width: 60% }
+  width: 60% 
+}
 
 .bananas {
-  opacity: .3;
-  z-index: 2; }
+  opacity: 1;
+  z-index: 2; 
+}
 
 /*# sourceMappingURL=style.css.map */
+.counter{
+  width:100%;
+  margin: 5px auto;
+  margin-left: -15px;
+  text-align: right;
+  font-family:arial;
+  color:red;
+  font-weight:bold;
+  padding-top:10px;
+  font-size:20px;
+  position:relative;
+  z-index:9999;
+}
+
+.start{
+  height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    z-index: 2; 
+    text-align: center;
+}
+
+.start-game{
+    padding: 12px 28px;
+    background: rgb(66, 183, 42);
+    color: #fff;
+    font-size:18px;
+    border: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.end-game{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    z-index: 2; 
+    text-align: center;
+    padding-top: 100px;
+}
+
+
+.score-final{
+  color: red;
+  font-size: 70px;
+}
