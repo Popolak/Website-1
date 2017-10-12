@@ -6,21 +6,7 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
-<<<<<<< HEAD
-=======
     var points = 15;
->>>>>>> praftr-master
-    var vid = $('#dk');
-    vid.get(0).volume = 0.3;
-    $(document).click(function(event) {
-        if (!$(event.target).closest('.bananas').length){
-            $('#scream').get(0).currentTime = 2;
-            $('#scream').get(0).play();
-        } else {
-              $('#nice').get(0).play();
-        }
-        // body...
-    });
 
     // Loop function
     setInterval(leftMonkey, 8000);
@@ -33,7 +19,7 @@ $( document ).ready(function() {
     // Events
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
-            "right": "-6%"
+            "right": "-50px"
         }, 1000, function () {
             // Nothing
         });
@@ -41,7 +27,7 @@ $( document ).ready(function() {
 
     rightMonkeyTarget.mouseleave(function () {
         $(this).stop(true,false).animate({
-            "right": "-45%"
+            "right": "-400px"
         }, 1000, function () {
             // Nothing
         });
@@ -72,7 +58,7 @@ $( document ).ready(function() {
             leftMonkeyTarget.animate({
                 "left": "-330px"
             }, 1000, function () {
-                // Nothing3
+                // Nothing
             });
         });
     }
@@ -86,21 +72,19 @@ $( document ).ready(function() {
 
     function initBananas() {
         var divSize = 50;
-        var posX = (Math.random() * 100);
-        var posY = (Math.random() * 100);
-        $newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
-            'left': posX + '%',
-            'top': posY + '%'
+        var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
+        var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
+        var newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
+            'left': posX + 'px',
+            'top': posY + 'px'
         });
-        $newImg.appendTo($('body'));
+        newImg.appendTo($('body'));
     }
 
     function moveBananas () {
         var newPos = makeNewPosition();
-        $('.bananas').hide().css({
-            'left': newPos[1] + 'px',
-            'top': newPos[0] + 'px'
-        }).fadeIn(500);
+        $('.bananas').animate({ top: newPos[0], left: newPos[1] }, 500, function(){
+        });
     }
 
     function score () {
@@ -123,5 +107,4 @@ $( document ).ready(function() {
 
         return [nh,nw];
     }
-
 });
