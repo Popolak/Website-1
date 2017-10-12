@@ -32,7 +32,8 @@ $( document ).ready(function() {
             // Nothing
         });
     });
-    bananasTarget.click(function () {
+    bananasTarget.click(function (e) {
+        console.log(e);
         $(this).remove();
         countBananasRemaining();
         score();
@@ -41,7 +42,6 @@ $( document ).ready(function() {
             victoryPanel.css('display', 'block');
         }
     });
-
     // Functions
     function leftMonkey() {
         leftMonkeyTarget.animate({
@@ -52,6 +52,12 @@ $( document ).ready(function() {
             }, 1000, function () {
                 // Nothing
             });
+        });
+    }
+    function bananas() {
+        var newPos = makeNewPosition();
+        $(this).animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
+            bananas();
         });
     }
     function bottomMonkey() {
