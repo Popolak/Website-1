@@ -7,6 +7,17 @@ $( document ).ready(function() {
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
     var points = 15;
+    var vid = $('#dk');
+    vid.get(0).volume = 0.3;
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.bananas').length){
+            $('#scream').get(0).currentTime = 2;
+            $('#scream').get(0).play();
+        } else {
+              $('#nice').get(0).play();
+        }
+        // body...
+    });
 
     // Loop function
     setInterval(leftMonkey, 8000);
@@ -78,7 +89,7 @@ $( document ).ready(function() {
             'left': posX + '%',
             'top': posY + '%'
         });
-        newImg.appendTo($('body'));
+        $newImg.appendTo($('body'));
     }
 
     function moveBananas () {
