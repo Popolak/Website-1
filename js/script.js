@@ -6,10 +6,7 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
-<<<<<<< HEAD
-=======
     var points = 15;
->>>>>>> praftr-master
     var vid = $('#dk');
     vid.get(0).volume = 0.3;
     $(document).click(function(event) {
