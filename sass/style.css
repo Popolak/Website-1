@@ -44,8 +44,8 @@ img {
   left: 50%;
   z-index: 3; }
 .container .monkey3 {
-  right: -30%;
-  bottom: 35%;
+  right: -45%;
+  bottom: 25%;
   transform: rotate(-90deg);
   z-index: 3;
   width: 60% }
