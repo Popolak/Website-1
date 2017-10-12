@@ -6,18 +6,35 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
-
+    var startgame = $('.start-game');
+    var seconds = 5;
+    var compteurBanane = 0;
     // Loop function
-    setInterval(leftMonkey, 8000);
+    // setInterval(leftMonkey, 8000);
 
     // Init function
-    bottomMonkey();
+    // bottomMonkey();
     initBananas();
     var bananasTarget = $('.bananas');
     countBananasRemaining();
     score();
-
+    $('.bananas').hide();
+    $('.score').hide();
+    $('.end-game').hide();
     // Events
+
+    startgame.click(function(){
+        $('.start').fadeOut(1000);
+        $('.bananas').fadeIn(1000);
+        $('.score').fadeIn(1000);
+        setInterval(leftMonkey, 8000);
+        bottomMonkey(); 
+        countdown();
+
+    })
+    
+         
+
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
             "right": "-50px"
@@ -32,13 +49,16 @@ $( document ).ready(function() {
             // Nothing
         });
     });
+
     bananasTarget.click(function () {
         $(this).remove();
         countBananasRemaining();
         score();
+        compteurBanane = compteurBanane + 1;
         if (victory()) {
             scorePanel.css('display', 'none');
             victoryPanel.css('display', 'block');
+            seconds = 0;
         }
     });
 
@@ -53,12 +73,14 @@ $( document ).ready(function() {
                 // Nothing
             });
         });
+
     }
-    function bottomMonkey() {
+    function bottomMonkey(e) {
         var newPos = makeNewPosition();
         bottomMonkeyTarget.animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
             bottomMonkey();
         });
+
     }
     function initBananas() {
         var j = 15;
@@ -72,14 +94,25 @@ $( document ).ready(function() {
             });
             $newImg.appendTo($('body'));
         }
+
     }
     function score () {
         $('.count_remaining').html(countBananasRemaining())
     }
+
     function victory() {
         if (countBananasRemaining () === 0)
             return true;
         return false;
+    }
+
+    function countScoreFinal(compteurBanane){
+        scoreFinal = compteurBanane + '/15';
+        return scoreFinal;
+
+    }
+    function endScore() {
+        $('.score-final').html(countScoreFinal(compteurBanane));
     }
     function countBananasRemaining () {
         return $('.bananas').length;
@@ -94,4 +127,32 @@ $( document ).ready(function() {
 
         return [nh,nw];
     }
+
+    //timer
+    
+    function countdown() {
+        
+        function tick() {
+            var counter = document.getElementById("counter");
+            seconds--;
+            counter.innerHTML = (seconds < 10 ? "0" : "")  + String(seconds) + "S";
+            if( seconds > 0 ) {
+                setTimeout(tick, 1000);
+            } else {
+                $('.end-game').fadeIn(1000);
+                $('.bananas').hide();
+                $('.score').hide();
+                        
+                bottomMonkeyTarget.hide();
+                leftMonkeyTarget.hide();
+                rightMonkeyTarget.hide();
+                endScore();
+                //alert("Game over");
+                
+            }
+        }
+        tick();
+    }
+
+
 });
