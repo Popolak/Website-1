@@ -6,6 +6,7 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
+    var points = 15;
 
     var startgame = $('.start-game');
     var seconds = 30;
@@ -25,7 +26,6 @@ $( document ).ready(function() {
 
 
     initBananas();
-    countBananasRemaining();
     score();
     $('.bananas').hide();
     $('.score').hide();
@@ -67,8 +67,9 @@ $( document ).ready(function() {
      * 
      */
 
-    $('.bananas').click(function (e) {
-        
+    $('.bananas').click(function () {
+        points--;
+        moveBananas();
         score();
         compteurBanane = compteurBanane + 1;
         if (victory()) {
@@ -118,12 +119,18 @@ $( document ).ready(function() {
         newImg.appendTo($('body'));
     }
 
+    function moveBananas () {
+        var newPos = makeNewPosition();
+        $('.bananas').animate({ top: newPos[0], left: newPos[1] }, 500, function(){
+        });
+    }
+
     function score () {
-        $('.count_remaining').html(countBananasRemaining())
+        $('.count_remaining').html(points)
     }
 
     function victory() {
-        if (countBananasRemaining () === 0)
+        if (points === 0)
             return true;
         return false;
     }
