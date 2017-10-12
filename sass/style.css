@@ -1,0 +1,56 @@
+body {
+  cursor: url("../assets/img/cursor.png"), pointer;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  background-image: url("../assets/img/Jungle.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1; }
+
+img {
+  max-width: 100%;
+  margin: 0;
+  position: absolute; }
+
+.container .score-board {
+  position: relative;
+  height: 200px;
+  z-index: 1; }
+  .container .score-board .score .count_remaining {
+    position: absolute;
+    left: 51%;
+    top: 110px;
+    transform: translate(-65%, 0);
+    font-size: 2em;
+    font-weight: bold; }
+  .container .score-board img {
+    max-height: 100%;
+    left: 50%;
+    transform: translate(-50%, 0); }
+  .container .score-board .victory {
+    display: none; }
+.container .monkey1 {
+  left: -330px;
+  bottom: 200px;
+  transform: rotate(40deg);
+  z-index: 3; }
+.container .monkey2 {
+  bottom: -250px;
+  left: 50%;
+  z-index: 3; }
+.container .monkey3 {
+  right: -400px;
+  bottom: 200px;
+  transform: rotate(-90deg);
+  z-index: 3; }
+
+.bananas {
+  opacity: 0.3;
+  z-index: 2; }
+
+/*# sourceMappingURL=style.css.map */
