@@ -180,8 +180,6 @@ $( document ).ready(function() {
                 leftMonkeyTarget.hide();
                 rightMonkeyTarget.hide();
                 endScore();
-                
-                
             }
         }
         tick();
