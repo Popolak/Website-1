@@ -83,8 +83,10 @@ $( document ).ready(function() {
 
     function moveBananas () {
         var newPos = makeNewPosition();
-        $('.bananas').animate({ top: newPos[0], left: newPos[1] }, 200, function(){
-        });
+        $('.bananas').hide().css({
+            'left': newPos[1] + 'px',
+            'top': newPos[0] + 'px'
+        }).fadeIn(500);
     }
 
     function score () {
