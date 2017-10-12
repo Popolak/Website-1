@@ -6,6 +6,8 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
+    var bananasTab = [];
+    var bananasTarget;
 
     // Loop function
     setInterval(leftMonkey, 8000);
@@ -13,7 +15,6 @@ $( document ).ready(function() {
     // Init function
     bottomMonkey();
     initBananas();
-    var bananasTarget = $('.bananas');
     countBananasRemaining();
     score();
 
@@ -32,9 +33,12 @@ $( document ).ready(function() {
             // Nothing
         });
     });
-    bananasTarget.click(function () {
+
+    bananasTarget.click(function (e) {
         $(this).remove();
         countBananasRemaining();
+        bananasTab.splice(0, 1);
+        bananas();
         score();
         if (victory()) {
             scorePanel.css('display', 'none');
@@ -54,25 +58,36 @@ $( document ).ready(function() {
             });
         });
     }
+
     function bottomMonkey() {
         var newPos = makeNewPosition();
         bottomMonkeyTarget.animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
             bottomMonkey();
         });
     }
+
     function initBananas() {
         var j = 15;
         for(var i = 1; i<=j;i++){
             var divSize = 50;
             var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
             var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
-            $newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
+            var newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
                 'left': posX + 'px',
                 'top': posY + 'px'
+
             });
-            $newImg.appendTo($('body'));
+            bananasTab.push(newImg);
+            //$newImg.appendTo($('body'));
         }
+        bananas();
     }
+
+    function bananas() {
+        bananasTab[0].appendTo($('body')); // Appel de la première banane  
+        bananasTarget = $('.bananas');     
+    }
+
     function score () {
         $('.count_remaining').html(countBananasRemaining())
     }
@@ -82,7 +97,7 @@ $( document ).ready(function() {
         return false;
     }
     function countBananasRemaining () {
-        return $('.bananas').length;
+        return bananasTab.length;
     }
     function makeNewPosition(){
 
