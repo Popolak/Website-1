@@ -20,14 +20,14 @@ $( document ).ready(function() {
     // Events
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
-            "right": "-50px"
+            "right": "-5%"
         }, 1000, function () {
             // Nothing
         });
     });
     rightMonkeyTarget.mouseleave(function () {
         $(this).stop(true,false).animate({
-            "right": "-400px"
+            "right": "-30%"
         }, 1000, function () {
             // Nothing
         });
