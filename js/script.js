@@ -20,7 +20,7 @@ $( document ).ready(function() {
     // Events
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
-            "right": "-5%"
+            "right": "-6%"
         }, 1000, function () {
             // Nothing
         });
