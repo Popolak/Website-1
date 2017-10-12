@@ -23,7 +23,7 @@ img {
   z-index: 1; }
   .container .score-board .score .count_remaining {
     position: absolute;
-    left: 51%;
+    left: 50%;
     top: 110px;
     transform: translate(-65%, 0);
     font-size: 2em;
