@@ -72,11 +72,11 @@ $( document ).ready(function() {
 
     function initBananas() {
         var divSize = 50;
-        var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
-        var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
-        var newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
-            'left': posX + 'px',
-            'top': posY + 'px'
+        var posX = (Math.random() * 100);
+        var posY = (Math.random() * 100);
+        $newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
+            'left': posX + '%',
+            'top': posY + '%'
         });
         newImg.appendTo($('body'));
     }
@@ -109,4 +109,5 @@ $( document ).ready(function() {
 
         return [nh,nw];
     }
+
 });
