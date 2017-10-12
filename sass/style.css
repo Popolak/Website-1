@@ -47,8 +47,9 @@ img {
   bottom: 35%;
   transform: rotate(-90deg);
   z-index: 3;
-  width: 45%
+  width: 60% 
 }
+
 
 .bananas {
   opacity: 1;
