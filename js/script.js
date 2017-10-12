@@ -19,15 +19,42 @@ $( document ).ready(function() {
         // body...
     });
 
-    // Loop function
-    setInterval(leftMonkey, 8000);
+    var startgame = $('.start-game');
+    var seconds = 30;
+    var compteurBanane = 0;
 
-    // Init function
-    bottomMonkey();
+    var vid = $('#dk');
+    vid.get(0).volume = 0.3;
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.bananas').length){
+            $('#scream').get(0).currentTime = 2;
+            $('#scream').get(0).play();
+        } else {
+              $('#nice').get(0).play();
+        }
+        
+    });
+
+
     initBananas();
     score();
-
+    $('.bananas').hide();
+    $('.score').hide();
+    $('.end-game').hide();
     // Events
+
+    startgame.click(function(){
+        $('.start').fadeOut(1000);
+        $('.bananas').fadeIn(1000);
+        $('.score').fadeIn(1000);
+        setInterval(leftMonkey, 8000);
+        bottomMonkey(); 
+        countdown();
+
+    })
+    
+         
+
     rightMonkeyTarget.mouseenter(function () {
         $(this).stop(true,false).animate({
             "right": "-6%"
@@ -55,12 +82,13 @@ $( document ).ready(function() {
         points--;
         moveBananas();
         score();
+        compteurBanane = compteurBanane + 1;
         if (victory()) {
             scorePanel.css('display', 'none');
             victoryPanel.css('display', 'block');
+            seconds = 0;
         }
     });
-
     // Functions
     function leftMonkey() {
         leftMonkeyTarget.animate({
@@ -72,6 +100,14 @@ $( document ).ready(function() {
                 // Nothing3
             });
         });
+
+    }
+
+    function bananas() {
+        var newPos = makeNewPosition();
+        $(this).animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
+            bananas();
+        });
     }
 
     function bottomMonkey() {
@@ -79,6 +115,7 @@ $( document ).ready(function() {
         bottomMonkeyTarget.animate({ top: newPos[0], left: newPos[1] }, 1000, function(){
             bottomMonkey();
         });
+
     }
 
     function initBananas() {
@@ -110,6 +147,21 @@ $( document ).ready(function() {
         return false;
     }
 
+    function countScoreFinal(compteurBanane){
+        scoreFinal = compteurBanane + '/15';
+        return scoreFinal;
+
+    }
+    
+    function endScore() {
+        $('.score-final').html(countScoreFinal(compteurBanane));
+    }
+
+    function countBananasRemaining () {
+        return bananasTab.length;
+    }
+
+
     function makeNewPosition(){
 
         var h = $(window).height() - 50;
@@ -119,6 +171,29 @@ $( document ).ready(function() {
         var nw = Math.floor(Math.random() * w);
 
         return [nh,nw];
+    }
+
+    //timer
+    function countdown() {
+        
+        function tick() {
+            var counter = document.getElementById("counter");
+            seconds--;
+            counter.innerHTML = (seconds < 10 ? "0" : "")  + String(seconds) + "S";
+            if( seconds > 0 ) {
+                setTimeout(tick, 1000);
+            } else {
+                $('.end-game').fadeIn(1000);
+                $('.bananas').hide();
+                $('.score').hide();
+                        
+                bottomMonkeyTarget.hide();
+                leftMonkeyTarget.hide();
+                rightMonkeyTarget.hide();
+                endScore();
+            }
+        }
+        tick();
     }
 
 });
