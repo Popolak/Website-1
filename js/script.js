@@ -6,8 +6,6 @@ $( document ).ready(function() {
     var rightMonkeyTarget = $('.monkey3');
     var scorePanel = $('.score');
     var victoryPanel = $('.victory');
-    var bananasTab = [];
-    var bananasTarget;
 
     // Loop function
     setInterval(leftMonkey, 8000);
@@ -26,6 +24,7 @@ $( document ).ready(function() {
             // Nothing
         });
     });
+
     rightMonkeyTarget.mouseleave(function () {
         $(this).stop(true,false).animate({
             "right": "-400px"
@@ -34,11 +33,15 @@ $( document ).ready(function() {
         });
     });
 
-    bananasTarget.click(function (e) {
-        $(this).remove();
-        countBananasRemaining();
-        bananasTab.splice(0, 1);
-        bananas();
+    /**
+     * Pas de tableau
+     * Que une banane
+     * A chaque clic la banane change de position 
+     * 
+     */
+
+    $('.bananas').click(function (e) {
+        
         score();
         if (victory()) {
             scorePanel.css('display', 'none');
@@ -67,38 +70,30 @@ $( document ).ready(function() {
     }
 
     function initBananas() {
-        var j = 15;
-        for(var i = 1; i<=j;i++){
-            var divSize = 50;
-            var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
-            var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
-            var newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
-                'left': posX + 'px',
-                'top': posY + 'px'
-
-            });
-            bananasTab.push(newImg);
-            //$newImg.appendTo($('body'));
-        }
-        bananas();
-    }
-
-    function bananas() {
-        bananasTab[0].appendTo($('body')); // Appel de la première banane  
-        bananasTarget = $('.bananas');     
+        var divSize = 50;
+        var posX = (Math.random() * ($('body').width() - divSize)).toFixed();
+        var posY = (Math.random() * ($('body').height() - divSize)).toFixed();
+        var newImg = $('<img class="bananas" src="assets/img/banane.png" alt="Banane">').css({
+            'left': posX + 'px',
+            'top': posY + 'px'
+        });
+        newImg.appendTo($('body'));
     }
 
     function score () {
         $('.count_remaining').html(countBananasRemaining())
     }
+
     function victory() {
         if (countBananasRemaining () === 0)
             return true;
         return false;
     }
+
     function countBananasRemaining () {
         return bananasTab.length;
     }
+
     function makeNewPosition(){
 
         var h = $(window).height() - 50;
